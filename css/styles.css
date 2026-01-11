@@ -540,6 +540,15 @@ a {
     padding: 0 24px;
 }
 
+.hero-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
 .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -551,7 +560,17 @@ a {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--primary-light);
-    margin-bottom: 24px;
+}
+
+.hero-badge.experience-badge {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #34D399;
+}
+
+.hero-badge .badge-icon {
+    width: 16px;
+    height: 16px;
 }
 
 .badge-dot {
