@@ -1178,10 +1178,106 @@ a {
 }
 
 /* =====================================================
+   Tech Stack Section
+   ===================================================== */
+.tech-stack {
+    background: var(--bg-darker);
+}
+
+.tech-categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.tech-category {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 28px;
+    transition: all 0.3s ease;
+}
+
+.tech-category:hover {
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(138, 92, 245, 0.1);
+}
+
+.tech-category-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.tech-category-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tech-category-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: white;
+}
+
+.tech-category h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tech-tag {
+    padding: 8px 16px;
+    background: rgba(138, 92, 245, 0.08);
+    border: 1px solid rgba(138, 92, 245, 0.15);
+    border-radius: 50px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+    background: rgba(138, 92, 245, 0.15);
+    border-color: rgba(138, 92, 245, 0.3);
+    color: var(--primary-light);
+}
+
+@media (max-width: 1024px) {
+    .tech-categories {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .tech-categories {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-category {
+        padding: 24px;
+    }
+}
+
+/* =====================================================
    Contact Section
    ===================================================== */
 .contact {
-    background: var(--bg-darker);
+    background: var(--bg-dark);
 }
 
 .contact-grid {
