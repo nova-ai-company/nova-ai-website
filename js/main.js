@@ -358,10 +358,12 @@ const ContactForm = {
             });
 
             if (response.ok) {
-                this.showSuccess();
+                this.showSuccess(button, originalText);
                 this.form.reset();
             } else {
                 const errorData = await response.json();
+                button.innerHTML = originalText;
+                button.disabled = false;
                 if (errorData.errors) {
                     this.showError(errorData.errors.map(err => err.message).join(', '));
                 } else {
@@ -369,10 +371,9 @@ const ContactForm = {
                 }
             }
         } catch (error) {
-            this.showError('Network error. Please check your connection and try again.');
-        } finally {
             button.innerHTML = originalText;
             button.disabled = false;
+            this.showError('Network error. Please check your connection and try again.');
         }
     },
 
@@ -397,10 +398,8 @@ const ContactForm = {
         return true;
     },
 
-    showSuccess() {
-        const button = this.form.querySelector('button[type="submit"]');
-        const originalText = button.innerHTML;
-
+    showSuccess(button, originalText) {
+        button.disabled = false;
         button.innerHTML = `
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; margin-right: 8px;">
                 <path d="M5 13l4 4L19 7"/>
