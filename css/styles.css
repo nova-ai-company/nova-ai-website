@@ -16,11 +16,11 @@
     --accent: #06B6D4;
 
     /* Background Colors */
-    --bg-dark: #0A0A0F;
-    --bg-darker: #050508;
-    --bg-card: #111118;
-    --bg-card-hover: #16161F;
-    --bg-gradient: linear-gradient(135deg, #0A0A0F 0%, #111118 50%, #0A0A0F 100%);
+    --bg-dark: #0C0C0C;
+    --bg-darker: #080808;
+    --bg-card: #141414;
+    --bg-card-hover: #1A1A1A;
+    --bg-gradient: linear-gradient(135deg, #0C0C0C 0%, #141414 50%, #0C0C0C 100%);
 
     /* Text Colors */
     --text-primary: #FFFFFF;
