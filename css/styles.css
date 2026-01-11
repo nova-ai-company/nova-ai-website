@@ -1423,7 +1423,7 @@ a {
    Footer
    ===================================================== */
 .footer {
-    background: var(--bg-darker);
+    background: #0C0C0C;
     border-top: 1px solid var(--border);
     padding: 80px 0 40px;
 }
