@@ -311,7 +311,7 @@ const ParticleSystem = {
 
 /* =====================================================
    Contact Form Module
-   Supports Formspree for production use
+   Uses native form submission to Formspree
    ===================================================== */
 const ContactForm = {
     init() {
@@ -325,32 +325,18 @@ const ContactForm = {
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
     },
 
-    async handleSubmit(e) {
-        e.preventDefault();
-
+    handleSubmit(e) {
         const formData = new FormData(this.form);
         const data = Object.fromEntries(formData);
 
-        // Basic validation
-        if (!this.validateForm(data)) return;
-
-        const formAction = this.form.getAttribute('action');
-        const isFormspree = formAction && formAction.includes('formspree.io') && !formAction.includes('YOUR_FORMSPREE_ID');
-
-        if (isFormspree) {
-            // Production: Submit to Formspree
-            await this.submitToFormspree(formAction, formData);
-        } else {
-            // Development/Demo: Show success message
-            this.showSuccess();
-            this.form.reset();
+        // Basic validation - prevent submission if invalid
+        if (!this.validateForm(data)) {
+            e.preventDefault();
+            return;
         }
-    },
 
-    async submitToFormspree(url, formData) {
+        // Show loading state
         const button = this.form.querySelector('button[type="submit"]');
-        const originalText = button.innerHTML;
-
         button.innerHTML = `
             <svg class="spinner" viewBox="0 0 24 24" style="width: 20px; height: 20px; margin-right: 8px; animation: spin 1s linear infinite;">
                 <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="30 70"/>
@@ -359,32 +345,8 @@ const ContactForm = {
         `;
         button.disabled = true;
 
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                this.showSuccess();
-                this.form.reset();
-            } else {
-                const data = await response.json();
-                if (data.errors) {
-                    this.showError(data.errors.map(e => e.message).join(', '));
-                } else {
-                    this.showError('Something went wrong. Please try again.');
-                }
-            }
-        } catch (error) {
-            this.showError('Network error. Please check your connection.');
-        } finally {
-            button.innerHTML = originalText;
-            button.disabled = false;
-        }
+        // Let the form submit naturally to Formspree
+        // Formspree will handle the redirect
     },
 
     validateForm(data) {
